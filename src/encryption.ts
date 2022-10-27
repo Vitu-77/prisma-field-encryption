@@ -180,6 +180,11 @@ export function encryptOnWrite(
           console.warn(warnings.whereClause(operation, path))
         }
         try {
+          if (!clearText) {
+            objectPath.set(draft.args, path, '')
+            return
+          }
+
           let cipherText: string | undefined
 
           if (method === 'CUSTOM' && !!encryptFn) {
@@ -190,7 +195,7 @@ export function encryptOnWrite(
             cipherText = encryptStringSync(clearText, keys.encryptionKey)
           }
 
-          if (!cipherText) {
+          if (cipherText === undefined) {
             throw new Error(errors.invalidConfig)
           }
 
@@ -260,7 +265,7 @@ export function decryptOnRead(
           )
         }
 
-        if (!clearText) {
+        if (clearText === undefined) {
           throw new Error(errors.invalidConfig)
         }
 
