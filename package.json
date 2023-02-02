@@ -1,6 +1,6 @@
 {
   "name": "prisma-custom-field-encryption",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Transparent and customizable field-level encryption at rest for Prisma based on prisma-field-encryption package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
